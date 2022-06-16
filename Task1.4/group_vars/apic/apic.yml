@@ -9,4 +9,4 @@ apic_bd_singlepage_gw: 30.0.1.1
 apic_bd_singlepage_gw_mask: 24
 apic_bd_singlepage_subnet_name: singlepage_subnet
 apic_epg_singlepage: EPG_Singlepage
-apic_ap: CLUS_AP
+apic_ap: CLUS_AP_singlepage
