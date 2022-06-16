@@ -20,4 +20,3 @@
     - { role: vm-pg-attachment, vm: prod, service: backend }
     - { role: vm-pg-attachment, vm: prod, service: db }
     - { role: vm-pg-attachment, vm: test, service: frontend }
-
