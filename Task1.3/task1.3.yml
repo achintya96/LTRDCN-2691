@@ -35,7 +35,7 @@
         username: '{{ apic_user }}'
         password: '{{ apic_pass }}'
         tenant: '{{ apic_tenant }}'
-        ap: CLUS_AP_Singlepage #edit accordingly
+        ap: CLUS_AP_Singlepage 
         validate_certs: no
         state: present  
 
@@ -46,7 +46,7 @@
         password: '{{ apic_pass }}'
         tenant: '{{ apic_tenant }}'
         bd: BD_Singlepage
-        ap: CLUS_AP_Singlepage #edit accordingly
+        ap: CLUS_AP_Singlepage 
         epg: EPG_Singlepage
         validate_certs: no
         state: present  
@@ -57,7 +57,7 @@
         username: '{{ apic_user }}'
         password: '{{ apic_pass }}'
         tenant: '{{ apic_tenant }}'
-        ap: CLUS_AP_Singlepage #edit accordingly
+        ap: CLUS_AP_Singlepage 
         epg: EPG_Singlepage
         domain: nyc-dvs
         state: present
