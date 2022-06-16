@@ -1,0 +1,32 @@
+apic_creds: {user: "CLUS-userXX", pass: "{{ apic_user }}"}  #change this according to your details
+apic_host: 198.19.202.66
+apic_tenant: CLUS-userXX #change this according to your details
+apic_vrf: CLUS_VRF
+apic_vmm: nyc-dvs
+apic_lag: nyc-lag
+apic_bd_singlepage: BD_Singlepage
+apic_bd_singlepage_gw: 30.0.1.1
+apic_bd_singlepage_gw_mask: 24
+apic_bd_singlepage_subnet_name: singlepage_subnet
+apic_epg_singlepage: EPG_Singlepage
+apic_bd_frontend: BD_Frontend
+apic_bd_frontend_gw: 20.0.1.1
+apic_bd_frontend_gw_mask: 24
+apic_bd_frontend_subnet_name: frontend_subnet
+apic_epg_frontend: EPG_Frontend
+apic_bd_backend: BD_Backend
+apic_bd_backend_gw: 20.0.2.1
+apic_bd_backend_gw_mask: 24
+apic_bd_backend_subnet_name: backend_subnet
+apic_epg_backend: EPG_Backend
+apic_bd_db: BD_DB
+apic_bd_db_gw: 20.0.3.1
+apic_bd_db_gw_mask: 24
+apic_bd_db_subnet_name: db_subnet
+apic_epg_db: EPG_DB
+apic_ap: CLUS_AP
+apic_contract: CLUS_Contract
+apic_subject: CLUS_Subject
+apic_filter: CLUS_Filter
+apic_filter_entry: CLUS_Filter_Entry
+

@@ -1,0 +1,30 @@
+- name: A Playbook for Task2 Step3 - the ACI object creation part with role reusal
+  hosts: apic
+  gather_facts: false
+  connection: httpapi
+
+  roles:
+    - { role: apic-object-creation, service: frontend }
+    - { role: apic-object-creation, service: backend }
+    - { role: apic-object-creation, service: db }
+    - { role: contract-creation, consumer: frontend, provider: backend }
+    - { role: contract-creation, consumer: backend, provider: db }
+
+- name: A Playbook for Task2 Step3 - application of the portgroups with role reusal
+  hosts: vcenter
+  gather_facts: false
+  connection: httpapi
+
+  roles:
+    - { role: vm-pg-attachment, vm: prod, service: frontend }
+    - { role: vm-pg-attachment, vm: prod, service: backend }
+    - { role: vm-pg-attachment, vm: prod, service: db }
+    - { role: vm-pg-attachment, vm: test, service: frontend }
+
+- name: A Playbook for Task2 Step3 - deploying the services
+  hosts: prodvm
+  gather_facts: false
+  connection: httpapi
+
+  roles:
+    - service-deployment

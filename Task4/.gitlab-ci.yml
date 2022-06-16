@@ -1,0 +1,35 @@
+before_script:
+  - apt-get update -qy #update system
+  - ansible --version
+  - ansible-lint --version
+  - export ANSIBLE_HOST_KEY_CHECKING=False
+
+stages:
+  - verify
+  - predeploy
+  - deploy
+
+verify:
+  stage: verify
+  script:
+    - ansible-lint task4/plays/cloud-tenant-stretch-playbook.yml
+    - ansible-playbook --inventory task4/inventory.ini --syntax-check task4/plays/cloud-tenant-stretch-playbook.yml
+  rules:
+    - if: '$CI_COMMIT_BEFORE_SHA ==  "0000000000000000000000000000000000000000"'
+      when: always
+
+predeploy:
+  stage: predeploy
+  script:
+    - ansible --inventory task4/inventory.ini all -m ping --vault-password-file task4/vault-pass --connection httpapi
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+      when: always
+
+deploy:
+  stage: deploy
+  script:
+    - ansible-playbook --inventory task4/inventory.ini task4/plays/cloud-tenant-stretch-playbook.yml --vault-password-file task4/vault-pass
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+      when: manual

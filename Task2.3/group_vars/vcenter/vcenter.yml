@@ -1,0 +1,16 @@
+vc_creds: {user: "aciadmin@vsphere.local", pass: "{{ vc_user }}"}
+vc_host: 198.19.202.251
+vc_datacenter: NYC
+vc_prodvm: CLUS_UserXX_ProdVM #change this according to your details
+vc_prodvm_mgmt_ip: X.X.X.X #change this according to your details
+vc_prodvm_mac_singlepage: XX:XX:XX:XX:XX:XX #change this according to your details
+vc_pg_singlepage: CLUS-userXX|CLUS_AP|EPG_Singlepage #change this according to your details
+vc_prodvm_mac_frontend: XX:XX:XX:XX:XX:XX #change this according to your details
+vc_pg_frontend: CLUS-userXX|CLUS_AP|EPG_Frontend #change this according to your details
+vc_prodvm_mac_backend: XX:XX:XX:XX:XX:XX #change this according to your details
+vc_pg_backend: CLUS-userXX|CLUS_AP|EPG_Backend #change this according to your details
+vc_prodvm_mac_db: XX:XX:XX:XX:XX:XX #change this according to your details
+vc_pg_db: CLUS-userXX|CLUS_AP|EPG_DB #change this according to your details
+vc_testvm: CLUS_UserXX_TestVM #change this according to your details
+vc_testvm_mac_singlepage: XX:XX:XX:XX:XX:XX #change this according to your details
+vc_testvm_mac_frontend: XX:XX:XX:XX:XX:XX #change this according to your details

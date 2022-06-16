@@ -1,0 +1,92 @@
+- name: Add a filter
+  cisco.aci.aci_filter:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    filter: '{{ apic_filter }}'
+    tenant: '{{ apic_tenant }}'
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+
+- name: Add a filter entry
+  cisco.aci.aci_filter_entry:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    state: present
+    entry: '{{ apic_filter_entry }}'
+    tenant: '{{ apic_tenant }}'
+    filter: '{{ apic_filter }}'
+    validate_certs: false
+  delegate_to: localhost
+
+- name: Add a contract
+  cisco.aci.aci_contract:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    contract: '{{ apic_contract }}'
+    scope: application-profile
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+
+- name: Add a contract subject
+  cisco.aci.aci_contract_subject:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    contract: '{{ apic_contract }}'
+    subject: '{{ apic_subject }}'
+    reverse_filter: true
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+
+- name: Bind a subject to filter
+  cisco.aci.aci_contract_subject_to_filter:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    contract: '{{ apic_contract }}'
+    subject: '{{ apic_subject }}'
+    filter: '{{ apic_filter }}'
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+
+- name: Bind the contract to consumer EPG
+  cisco.aci.aci_epg_to_contract:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    ap: '{{ apic_ap }}'
+    epg: "{{ vars['apic_epg_' ~ item ] }}"
+    contract: '{{ apic_contract }}'
+    contract_type: consumer
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+  with_items:
+    - "{{ consumer }}"
+
+- name: Bind the contract to provider EPG
+  cisco.aci.aci_epg_to_contract:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    ap: '{{ apic_ap }}'
+    epg: "{{ vars['apic_epg_' ~ item ] }}"
+    contract: '{{ apic_contract }}'
+    contract_type: provider
+    state: present
+    validate_certs: false
+  delegate_to: localhost
+  with_items:
+    - "{{ provider }}"

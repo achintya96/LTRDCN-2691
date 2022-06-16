@@ -1,0 +1,17 @@
+- name: Playbook for Task4 - creating a snapshot for the pipeline
+  hosts: apic
+  gather_facts: no
+  connection: httpapi
+
+  tasks:
+
+    - name: Create a Snapshot
+      cisco.aci.aci_config_snapshot:
+        host: '{{ apic_host }}'
+        username: '{{ apic_creds.user }}'
+        password: '{{ apic_creds.pass }}'
+        state: present
+        export_policy: '{{ apic_tenant }}'
+        description: Pipeline-generated backups
+        validate_certs: false
+      delegate_to: localhost

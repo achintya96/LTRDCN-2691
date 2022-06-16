@@ -1,0 +1,63 @@
+- name: Create a BD
+  cisco.aci.aci_bd:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    vrf: '{{ apic_vrf }}'
+    bd: "{{ vars['apic_bd_' ~ item] }}"
+    validate_certs: false
+    state: present
+  with_items: "{{ service }}"
+
+- name: Create a subnet
+  cisco.aci.aci_bd_subnet:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    bd: "{{ vars['apic_bd_' ~ item] }}"
+    subnet_name: "{{ vars['apic_bd_' ~ item ~ '_subnet_name'] }}"
+    gateway: "{{ vars['apic_bd_' ~ item ~ '_gw'] }}"
+    mask: "{{ vars['apic_bd_' ~ item ~ '_gw_mask'] }}"
+    validate_certs: false
+    state: present
+  with_items: "{{ service }}"
+
+- name: Create an AP
+  cisco.aci.aci_ap:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    ap: '{{ apic_ap }}'
+    validate_certs: false
+    state: present
+
+- name: Create an EPG
+  cisco.aci.aci_epg:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    bd: "{{ vars['apic_bd_' ~ item] }}"
+    ap: '{{ apic_ap }}'
+    epg: "{{ vars['apic_epg_' ~ item] }}"
+    validate_certs: false
+    state: present
+  with_items: "{{ service }}"
+
+- name: Attach the VMM domain to the created EPG
+  cisco.aci.aci_epg_to_domain:
+    host: '{{ apic_host }}'
+    username: '{{ apic_creds.user }}'
+    password: '{{ apic_creds.pass }}'
+    tenant: '{{ apic_tenant }}'
+    ap: '{{ apic_ap }}'
+    epg: "{{ vars['apic_epg_' ~ item] }}"
+    domain: '{{ apic_vmm }}'
+    domain_type: vmm
+    vm_provider: vmware
+    enhanced_lag_policy: '{{ apic_lag }}'
+    validate_certs: false
+  with_items: "{{ service }}"
