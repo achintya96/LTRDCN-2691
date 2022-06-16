@@ -12,8 +12,8 @@ stages:
 verify:
   stage: verify
   script:
-    - ansible-lint task4/plays/cloud-tenant-stretch-playbook.yml
-    - ansible-playbook --inventory task4/inventory.ini --syntax-check task4/plays/cloud-tenant-stretch-playbook.yml
+    - ansible-lint Ansible/plays/cloud-tenant-stretch-playbook.yml
+    - ansible-playbook --inventory Ansible/inventory.ini --syntax-check Ansible/plays/cloud-tenant-stretch-playbook.yml
   rules:
     - if: '$CI_COMMIT_BEFORE_SHA ==  "0000000000000000000000000000000000000000"'
       when: always
@@ -21,7 +21,7 @@ verify:
 predeploy:
   stage: predeploy
   script:
-    - ansible --inventory task4/inventory.ini all -m ping --vault-password-file task4/vault-pass --connection httpapi
+    - ansible --inventory Ansible/inventory.ini all -m ping --vault-password-file Ansible/vault-pass --connection httpapi
   rules:
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
       when: always
@@ -29,7 +29,7 @@ predeploy:
 deploy:
   stage: deploy
   script:
-    - ansible-playbook --inventory task4/inventory.ini task4/plays/cloud-tenant-stretch-playbook.yml --vault-password-file task4/vault-pass
+    - ansible-playbook --inventory Ansible/inventory.ini Ansible/plays/cloud-tenant-stretch-playbook.yml --vault-password-file Ansible/vault-pass
   rules:
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
       when: manual
