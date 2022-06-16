@@ -1,3 +1,6 @@
+# Move this to your root directory 
+
+
 before_script:
   - apt-get update -qy #update system
   - ansible --version
