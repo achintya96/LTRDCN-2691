@@ -14,8 +14,8 @@ stages:
 verify:
   stage: verify
   script:
-    - ansible-lint Ansible/plays/task2.3.yml
-    - ansible-playbook --inventory Ansible/inventory.ini --syntax-check Ansible/plays/task2.3.yml
+    - ansible-lint Ansible/plays/task2.3-playbook.yml         # if you are short on time or stuck, comment this out
+    - ansible-playbook --inventory Ansible/inventory.ini --syntax-check Ansible/plays/task2.3-playbook.yml
   rules:
     - if: '$CI_COMMIT_BEFORE_SHA ==  "0000000000000000000000000000000000000000"'
       when: always
@@ -31,7 +31,7 @@ predeploy:
 deploy:
   stage: deploy
   script:
-    - ansible-playbook --inventory Ansible/inventory.ini Ansible/plays/task2.3.yml --vault-password-file Ansible/vault-pass
+    - ansible-playbook --inventory Ansible/inventory.ini Ansible/plays/task2.3-playbook.yml --vault-password-file Ansible/vault-pass
   rules:
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
       when: manual
