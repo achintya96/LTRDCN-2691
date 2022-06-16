@@ -1,5 +1,6 @@
 # Move this to your root directory 
 
+image: sabaroof/ciscolive2022:runner
 
 before_script:
   - apt-get update -qy #update system
