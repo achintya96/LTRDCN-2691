@@ -16,7 +16,7 @@ stages:
 verify:
   stage: verify
   script:
-    - ansible-lint Ansible/plays/cloud-tenant-stretch-playbook.yml
+#    - ansible-lint Ansible/plays/cloud-tenant-stretch-playbook.yml
     - ansible-playbook --inventory Ansible/inventory.ini --syntax-check Ansible/plays/cloud-tenant-stretch-playbook.yml
   rules:
     - if: '$CI_COMMIT_BEFORE_SHA ==  "0000000000000000000000000000000000000000"'
