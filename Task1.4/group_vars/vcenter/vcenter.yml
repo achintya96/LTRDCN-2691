@@ -4,7 +4,7 @@ vc_datacenter: NYC
 vc_prodvm: CLUS_UserXX_ProdVM #change this according to your details
 vc_prodvm_mac: XX:XX:XX:XX:XX:XX #change this according to your details
 vc_prodvm_int: ens161
-vc_prodvm_mgmt_ip: X.X.X.X #change this according to your details
+vc_prodvm_mgmt_ip: 198.19.202.X #change this according to your details
 vc_testvm: CLUS_UserXX_TestVM #change this according to your details
 vc_testvm_mac: XX:XX:XX:XX:XX:XX #change this according to your details
 vc_pg: CLUS-userXX|CLUS_AP|EPG_Singlepage #change this according to your details
