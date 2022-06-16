@@ -38,7 +38,7 @@ variable "tenant_stuff" {
   })
   default = {
     tenant_name  = "Cisco_Live_TENANT_XX" # change XX to your assigned user name 
-    display_name = "Ciso_Live_TENANT_XX" # change XX to your assigned user name 
+    display_name = "Cisco_Live_TENANT_XX" # change XX to your assigned user name 
     description  = " Terraform Created Tenant for user XX" # change XX to your assigned user name 
   }
 }
