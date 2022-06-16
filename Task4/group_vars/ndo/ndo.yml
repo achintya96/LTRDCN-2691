@@ -1,7 +1,7 @@
 ndo_creds: {user: "CLUS-userXX", pass: "{{ ndo_user }}"} #change this according to your details
 ndo_host: 198.19.202.12
 ndo_tenant: Cisco_Live_TENANT_XX #change this according to your details
-ndo_template: Cisco_Live_TEMPLATE
+ndo_template: Cisco_Live_TEMPLATE_XX #change this according to your details
 ndo_schema: Cisco_Live_SCHEMA_XX #change this according to your details
 ndo_vrf: CLUS_VRF
 ndo_anp: CLUS_ANP
