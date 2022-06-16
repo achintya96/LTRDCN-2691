@@ -21,10 +21,3 @@
     - { role: vm-pg-attachment, vm: prod, service: db }
     - { role: vm-pg-attachment, vm: test, service: frontend }
 
-- name: A Playbook for Task2 Step3 - deploying the services
-  hosts: prodvm
-  gather_facts: false
-  connection: httpapi
-
-  roles:
-    - service-deployment
